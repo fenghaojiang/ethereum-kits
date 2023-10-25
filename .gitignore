@@ -24,3 +24,5 @@ go.work
 bin/
 build/
 nice_account
+common/client/eth_test.go
+common/client/bundler_test.go
