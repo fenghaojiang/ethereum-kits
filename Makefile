@@ -4,5 +4,5 @@
 
 
 generate: 
-	go generate ./constant
+	go generate ./contracts/...
 	go mod tidy
