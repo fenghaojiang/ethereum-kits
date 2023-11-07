@@ -18,6 +18,23 @@ const (
 	Lightspeed       BundlerEndpoint = "https://rpc.lightspeedbuilder.info/"
 )
 
+func AllBundlerEndpoints() []BundlerEndpoint {
+	return []BundlerEndpoint{
+		Builder0x69,
+		BeaverBuild,
+		FlashbotsBundler,
+		RsyncBundler,
+		Blocknative,
+		GambitLabs,
+		EthBuilder,
+		TitanEndpoint,
+		BuildAI,
+		Payload,
+		Bloxroute,
+		Lightspeed,
+	}
+}
+
 type TestnetBundlerEndpoint string
 
 const (
