@@ -16,6 +16,7 @@ const (
 	Payload          BundlerEndpoint = "https://rpc.payload.de/"
 	Bloxroute        BundlerEndpoint = "https://mev.api.blxrbdn.com/"
 	Lightspeed       BundlerEndpoint = "https://rpc.lightspeedbuilder.info/"
+	LokiBuilder      BundlerEndpoint = "https://rpc.lokibuilder.xyz/"
 )
 
 func AllBundlerEndpoints() []BundlerEndpoint {
@@ -32,6 +33,7 @@ func AllBundlerEndpoints() []BundlerEndpoint {
 		Payload,
 		Bloxroute,
 		Lightspeed,
+		LokiBuilder,
 	}
 }
 
