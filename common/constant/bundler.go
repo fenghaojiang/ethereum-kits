@@ -16,6 +16,9 @@ const (
 	Payload          BundlerEndpoint = "https://rpc.payload.de/"
 	Bloxroute        BundlerEndpoint = "https://mev.api.blxrbdn.com/"
 	Lightspeed       BundlerEndpoint = "https://rpc.lightspeedbuilder.info/"
+	NFactorial       BundlerEndpoint = "https://rpc.nfactorial.xyz"
+	BobaBuilder      BundlerEndpoint = "https://boba-builder.com/searcher"
+	F1b              BundlerEndpoint = "https://rpc.f1b.io"
 )
 
 func AllBundlerEndpoints() []BundlerEndpoint {
@@ -32,6 +35,9 @@ func AllBundlerEndpoints() []BundlerEndpoint {
 		Payload,
 		Bloxroute,
 		Lightspeed,
+		NFactorial,
+		BobaBuilder,
+		F1b,
 	}
 }
 
