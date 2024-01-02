@@ -1,6 +1,10 @@
 package constant
 
-import "math/big"
+import (
+	"math/big"
+
+	"github.com/shopspring/decimal"
+)
 
 var (
 	gwei = new(big.Int).SetUint64(1_00000_0000)
@@ -17,6 +21,10 @@ func GWei() *big.Int {
 
 func NumberOfETH(number uint64) *big.Int {
 	return new(big.Int).Mul(new(big.Int).SetUint64(number), eth)
+}
+
+func NumberOfETHFloat(number float64) *big.Int {
+	return decimal.NewFromFloat(number).Mul(decimal.NewFromBigInt(eth, 0)).BigInt()
 }
 
 func ETH() *big.Int {
