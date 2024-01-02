@@ -76,3 +76,11 @@ const (
 func (t TestnetBundlerEndpoint) String() string {
 	return string(t)
 }
+
+func AllGoerliBundlerEndpoints() []TestnetBundlerEndpoint {
+	return []TestnetBundlerEndpoint{
+		FlashbotsGoerliBundler,
+		BuildAIGoerliBundler,
+		EdenNetworkGoerliBundler,
+	}
+}
