@@ -28,12 +28,12 @@ func (b BundlerClient) SendBundle(ctx context.Context, endpoint string, headers 
 		SetBody(request).SetResult(&result).
 		Post(endpoint)
 	if err != nil {
-		log.Error("failed to send bundle", zap.Error(err))
+		log.Error("failed to send bundle", zap.Any("resp", string(resp.Body())), zap.Error(err))
 		return "", err
 	}
 
 	if resp.StatusCode() != http.StatusOK {
-		log.Error("failed to send bundle", zap.Int("statusCode", resp.StatusCode()), zap.Any("body", resp.Body()))
+		log.Error("failed to send bundle", zap.Int("statusCode", resp.StatusCode()), zap.Any("body", string(resp.Body())))
 		return "", errors.New("failed to send bundle")
 	}
 

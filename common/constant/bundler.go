@@ -5,7 +5,7 @@ type BundlerEndpoint string
 
 const (
 	Builder0x69      BundlerEndpoint = "https://builder0x69.io/"
-	BeaverBuild      BundlerEndpoint = "https://rpc.beaverbuild.com/"
+	BeaverBuild      BundlerEndpoint = "https://rpc.beaverbuild.org/"
 	FlashbotsBundler BundlerEndpoint = "https://relay.flashbots.net/"
 	RsyncBundler     BundlerEndpoint = "https://rsync-builder.xyz/"
 	Blocknative      BundlerEndpoint = "https://api.blocknative.com/v1/auction/"
