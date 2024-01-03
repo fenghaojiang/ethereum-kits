@@ -17,7 +17,7 @@ const (
 	Bloxroute        BundlerEndpoint = "https://mev.api.blxrbdn.com/"
 	Lightspeed       BundlerEndpoint = "https://rpc.lightspeedbuilder.info/"
 	NFactorial       BundlerEndpoint = "https://rpc.nfactorial.xyz/"
-	BobaBuilder      BundlerEndpoint = "https://boba-builder.com/searcher/bundle/"
+	BobaBuilder      BundlerEndpoint = "https://boba-builder.com/searcher/bundle"
 	F1b              BundlerEndpoint = "https://rpc.f1b.io/"
 	JetBldr          BundlerEndpoint = "https://rpc.jetbldr.xyz/"
 	PenguinBuild     BundlerEndpoint = "https://rpc.penguinbuild.org/"

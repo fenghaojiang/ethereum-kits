@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"errors"
 	"net/http"
+	"strings"
 
 	"github.com/fenghaojiang/ethereum-kits/common/log"
 	"github.com/fenghaojiang/ethereum-kits/model"
@@ -48,6 +49,11 @@ func (b BundlerClient) SendBundle(ctx context.Context, endpoint string, headers 
 	if err != nil {
 		log.Error("failed to send bundle", zap.Any("body", string(resp.Body())), zap.Error(err))
 		return "", err
+	}
+
+	if strings.Contains(err.Error(), "invalid character '{' after top-level value") {
+		log.Info("skip err", zap.String("endpoint", endpoint))
+		return "", nil
 	}
 
 	return strResult.Result, nil
