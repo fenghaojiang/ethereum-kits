@@ -47,13 +47,13 @@ func (b BundlerClient) SendBundle(ctx context.Context, endpoint string, headers 
 	var strResult model.RPCResponse[string]
 	err = json.Unmarshal(resp.Body(), &strResult)
 	if err != nil {
+		if strings.Contains(err.Error(), "invalid character '{' after top-level value") {
+			log.Info("skip err", zap.String("endpoint", endpoint))
+			return "", nil
+		}
+
 		log.Error("failed to send bundle", zap.Any("body", string(resp.Body())), zap.Error(err))
 		return "", err
-	}
-
-	if strings.Contains(err.Error(), "invalid character '{' after top-level value") {
-		log.Info("skip err", zap.String("endpoint", endpoint))
-		return "", nil
 	}
 
 	return strResult.Result, nil
