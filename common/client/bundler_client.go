@@ -2,6 +2,7 @@ package client
 
 import (
 	"context"
+	"encoding/json"
 	"errors"
 	"net/http"
 
@@ -23,9 +24,8 @@ func NewBundlerClient() *BundlerClient {
 }
 
 func (b BundlerClient) SendBundle(ctx context.Context, endpoint string, headers map[string]string, request model.RPCRequest) (string, error) {
-	var result model.RPCResponse[model.EthBundleResponse]
 	resp, err := b.cli.R().SetHeaders(headers).
-		SetBody(request).SetResult(&result).
+		SetBody(request).
 		Post(endpoint)
 	if err != nil {
 		log.Error("failed to send bundle", zap.Any("resp", string(resp.Body())), zap.Error(err))
@@ -37,5 +37,18 @@ func (b BundlerClient) SendBundle(ctx context.Context, endpoint string, headers 
 		return "", errors.New("failed to send bundle")
 	}
 
-	return result.Result.BundleHash, nil
+	var result model.RPCResponse[model.EthBundleResponse]
+	err = json.Unmarshal(resp.Body(), &result)
+	if err == nil {
+		return result.Result.BundleHash, nil
+	}
+
+	var strResult model.RPCResponse[string]
+	err = json.Unmarshal(resp.Body(), &strResult)
+	if err != nil {
+		log.Error("failed to send bundle", zap.Any("body", string(resp.Body())), zap.Error(err))
+		return "", err
+	}
+
+	return strResult.Result, nil
 }
