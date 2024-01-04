@@ -11,6 +11,7 @@ import (
 
 type EthereumClient struct {
 	ethClient *ethclient.Client
+	endpoint  string
 }
 
 func NewEthereumClient(endpoint string) (*EthereumClient, error) {
@@ -22,6 +23,7 @@ func NewEthereumClient(endpoint string) (*EthereumClient, error) {
 
 	return &EthereumClient{
 		ethClient: ethClient,
+		endpoint:  endpoint,
 	}, nil
 }
 
