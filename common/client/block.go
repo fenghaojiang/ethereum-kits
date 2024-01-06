@@ -10,7 +10,11 @@ import (
 	"go.uber.org/zap"
 )
 
-var LatestBlock = new(atomic.Uint64)
+var latestBlock = new(atomic.Uint64)
+
+func LatestBlock() uint64 {
+	return latestBlock.Load()
+}
 
 func StartListenLatestBlock(ethereumClients []*EthereumClient, watchInterval time.Duration) {
 	go common.Recoverable(context.Background(), func(ctx context.Context) {
@@ -33,9 +37,9 @@ func StartListenLatestBlock(ethereumClients []*EthereumClient, watchInterval tim
 
 					log.Info("latest block fetched", zap.String("rpc endpoint", ec.endpoint), zap.Uint64("latest block", number))
 
-					if number > LatestBlock.Load() {
-						LatestBlock.Store(number)
-						log.Info("latest block updated", zap.String("rpc endpoint", ec.endpoint), zap.Uint64("latest block", LatestBlock.Load()))
+					if number > latestBlock.Load() {
+						latestBlock.Store(number)
+						log.Info("latest block updated", zap.String("rpc endpoint", ec.endpoint), zap.Uint64("latest block", LatestBlock()))
 					}
 				}
 			}

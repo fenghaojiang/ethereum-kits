@@ -24,7 +24,7 @@ func TestOnListeningBlock(t *testing.T) {
 		for {
 			select {
 			case <-ticker.C:
-				log.Info("test latest block", zap.Uint64("latest", client.LatestBlock.Load()))
+				log.Info("test latest block", zap.Uint64("latest", client.LatestBlock()))
 			}
 		}
 	})

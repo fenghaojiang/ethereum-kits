@@ -24,7 +24,7 @@ func TestOnListenNonce(t *testing.T) {
 		for {
 			select {
 			case <-ticker.C:
-				log.Info("test listen nonce", zap.String("address", addrNonce.Address.String()), zap.Uint64("nonce", addrNonce.Nonce.Load()))
+				log.Info("test listen nonce", zap.String("address", addrNonce.Address.String()), zap.Uint64("nonce", addrNonce.Nonce()))
 			}
 		}
 

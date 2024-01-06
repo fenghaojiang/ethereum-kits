@@ -38,9 +38,9 @@ func StartListeningNonce(ethereumClients []*EthereumClient, addressNonce *model.
 
 					log.Info("latest nonce of address fetched", zap.String("rpc endpoint", ec.endpoint), zap.String("address", address.String()), zap.Uint64("nonce", nonce))
 
-					if nonce > addressNonce.Nonce.Load() {
-						addressNonce.Nonce.Store(nonce)
-						log.Info("latest nonce of address updated", zap.String("rpc endpoint", ec.endpoint), zap.String("address", address.String()), zap.Uint64("nonce", addressNonce.Nonce.Load()))
+					if nonce > addressNonce.Nonce() {
+						addressNonce.UpdatedNonce(nonce)
+						log.Info("latest nonce of address updated", zap.String("rpc endpoint", ec.endpoint), zap.String("address", address.String()), zap.Uint64("nonce", addressNonce.Nonce()))
 					}
 				}
 
