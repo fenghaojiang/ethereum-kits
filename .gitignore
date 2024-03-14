@@ -26,3 +26,6 @@ build/
 nice_account
 common/client/eth_test.go
 common/client/bundler_test.go
+
+common/client/bundle_lift_test.go
+common/client/subscribe_test.go

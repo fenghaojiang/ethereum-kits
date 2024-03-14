@@ -2,6 +2,7 @@ package account
 
 import (
 	"crypto/ecdsa"
+	"fmt"
 	"strings"
 
 	"github.com/ethereum/go-ethereum/common"
@@ -35,7 +36,7 @@ func NewAccountFromPrivateKey(privateKeyHex string) (*Account, error) {
 	}, nil
 }
 
-func NewAccountFromMemonic(phrase string) (*Account, error) {
+func NewAccountFromMemonic(phrase string, index uint64) (*Account, error) {
 	seed, err := hdwallet.NewSeedFromMnemonic(phrase)
 	if err != nil {
 		log.Error("failed to generate seed from mnemonic", zap.Error(err))
@@ -48,7 +49,7 @@ func NewAccountFromMemonic(phrase string) (*Account, error) {
 		return nil, err
 	}
 
-	path := hdwallet.MustParseDerivationPath("m/44'/60'/0'/0/0")
+	path := hdwallet.MustParseDerivationPath(fmt.Sprintf("m/44'/60'/0'/0/%d", index))
 	account, err := wallet.Derive(path, false)
 	if err != nil {
 		log.Error("failed to derive account from wallet", zap.Error(err))

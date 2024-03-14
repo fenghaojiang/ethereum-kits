@@ -65,22 +65,34 @@ func AllBundlerEndpoints() []BundlerEndpoint {
 	}
 }
 
-type TestnetBundlerEndpoint string
+type GoerliTestnetBundlerEndpoint string
 
 const (
-	FlashbotsGoerliBundler   TestnetBundlerEndpoint = "https://relay-goerli.flashbots.net/"
-	BuildAIGoerliBundler     TestnetBundlerEndpoint = "https://buildai.net/goerli/"
-	EdenNetworkGoerliBundler TestnetBundlerEndpoint = "https://goerli.edennetwork.io/v1/bundle/"
+	FlashbotsGoerliBundler   GoerliTestnetBundlerEndpoint = "https://relay-goerli.flashbots.net/"
+	BuildAIGoerliBundler     GoerliTestnetBundlerEndpoint = "https://buildai.net/goerli/"
+	EdenNetworkGoerliBundler GoerliTestnetBundlerEndpoint = "https://goerli.edennetwork.io/v1/bundle/"
 )
 
-func (t TestnetBundlerEndpoint) String() string {
+func (t GoerliTestnetBundlerEndpoint) String() string {
 	return string(t)
 }
 
-func AllGoerliBundlerEndpoints() []TestnetBundlerEndpoint {
-	return []TestnetBundlerEndpoint{
+func AllGoerliBundlerEndpoints() []GoerliTestnetBundlerEndpoint {
+	return []GoerliTestnetBundlerEndpoint{
 		FlashbotsGoerliBundler,
 		BuildAIGoerliBundler,
 		EdenNetworkGoerliBundler,
+	}
+}
+
+type SepoliaTestnetBundlerEndpoint string
+
+const (
+	FlashbotsSepoliaBundler SepoliaTestnetBundlerEndpoint = "https://relay-sepolia.flashbots.net"
+)
+
+func AllSepoliaBundlerEndpoints() []SepoliaTestnetBundlerEndpoint {
+	return []SepoliaTestnetBundlerEndpoint{
+		FlashbotsSepoliaBundler,
 	}
 }
