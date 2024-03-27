@@ -31,6 +31,16 @@ func ETH() *big.Int {
 	return new(big.Int).Set(eth)
 }
 
+func InGWei(n *big.Int) float64 {
+	f, _ := n.Div(n, gwei).Float64()
+	return f
+}
+
+func InETH(n *big.Int) float64 {
+	f, _ := n.Div(n, eth).Float64()
+	return f
+}
+
 const (
 	EthereumDecimals = 18
 	USDCDecimals     = 6

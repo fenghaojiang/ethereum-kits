@@ -11,7 +11,7 @@ import (
 
 func TestOnGenerateNewAccount(t *testing.T) {
 	privateKey, _account, err := account.GenerateAccount()
-	for err == nil && !strings.HasPrefix(_account, "0x7777") {
+	for err == nil && !strings.HasPrefix(_account, "0x9999") {
 		privateKey, _account, err = account.GenerateAccount()
 	}
 
