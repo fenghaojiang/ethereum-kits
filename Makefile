@@ -1,6 +1,9 @@
 .PHONY: build
 
 
+lint: 
+	golangci-lint run ./...
+
 
 
 generate: 

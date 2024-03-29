@@ -43,7 +43,8 @@ func StartListeningNonce(ethereumClients []*EthereumClient, addressNonce *model.
 						log.Info("latest nonce of address updated", zap.String("rpc endpoint", ec.endpoint), zap.String("address", address.String()), zap.Uint64("nonce", addressNonce.Nonce()))
 					}
 				}
-
+			case <-ctx.Done():
+				log.Info("exiting watching nonce", zap.String("address", address.String()))
 			}
 		}
 	})

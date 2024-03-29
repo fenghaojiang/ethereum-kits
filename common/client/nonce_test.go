@@ -1,6 +1,7 @@
 package client_test
 
 import (
+	"context"
 	"testing"
 	"time"
 
@@ -21,10 +22,14 @@ func TestOnListenNonce(t *testing.T) {
 		addrNonce := model.NewAddressNonce(common.HexToAddress("0x1f9090aaE28b8a3dCeaDf281B0F12828e676c326"))
 		client.StartListeningNonce([]*client.EthereumClient{cli}, addrNonce, 1*time.Second)
 		ticker := time.NewTicker(time.Second)
+
+		ctx := context.Background()
 		for {
 			select {
 			case <-ticker.C:
 				log.Info("test listen nonce", zap.String("address", addrNonce.Address.String()), zap.Uint64("nonce", addrNonce.Nonce()))
+			case <-ctx.Done():
+				log.Info("exiting listening nonce")
 			}
 		}
 

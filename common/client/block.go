@@ -42,6 +42,8 @@ func StartListenLatestBlock(ethereumClients []*EthereumClient, watchInterval tim
 						log.Info("latest block updated", zap.String("rpc endpoint", ec.endpoint), zap.Uint64("latest block", LatestBlock()))
 					}
 				}
+			case <-ctx.Done():
+				log.Info("exiting listening latest block")
 			}
 		}
 	})

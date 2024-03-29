@@ -1,6 +1,7 @@
 package client_test
 
 import (
+	"context"
 	"testing"
 	"time"
 
@@ -20,11 +21,18 @@ func TestOnListeningBlock(t *testing.T) {
 			cli,
 		}, time.Second*1)
 
+		ctx := context.Background()
+
 		ticker := time.NewTicker(time.Second)
+		defer func() {
+			ticker.Stop()
+		}()
 		for {
 			select {
 			case <-ticker.C:
 				log.Info("test latest block", zap.Uint64("latest", client.LatestBlock()))
+			case <-ctx.Done():
+				log.Info("exiting listening block")
 			}
 		}
 	})
