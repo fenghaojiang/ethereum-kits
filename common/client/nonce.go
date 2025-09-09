@@ -32,15 +32,15 @@ func StartListeningNonce(ethereumClients []*EthereumClient, addressNonce *model.
 				for _, ec := range ethereumClients {
 					nonce, err := ec.ETHClient().NonceAt(ctx, address, nil)
 					if err != nil {
-						log.Error("failed to get latest nonce of addr", zap.String("rpc endpoint", ec.endpoint), zap.Error(err))
+						log.Error("failed to get latest nonce of addr", zap.String("rpc endpoint", ec.Endpoint), zap.Error(err))
 						continue
 					}
 
-					log.Info("latest nonce of address fetched", zap.String("rpc endpoint", ec.endpoint), zap.String("address", address.String()), zap.Uint64("nonce", nonce))
+					log.Info("latest nonce of address fetched", zap.String("rpc endpoint", ec.Endpoint), zap.String("address", address.String()), zap.Uint64("nonce", nonce))
 
 					if nonce > addressNonce.Nonce() {
 						addressNonce.UpdatedNonce(nonce)
-						log.Info("latest nonce of address updated", zap.String("rpc endpoint", ec.endpoint), zap.String("address", address.String()), zap.Uint64("nonce", addressNonce.Nonce()))
+						log.Info("latest nonce of address updated", zap.String("rpc endpoint", ec.Endpoint), zap.String("address", address.String()), zap.Uint64("nonce", addressNonce.Nonce()))
 					}
 				}
 			case <-ctx.Done():

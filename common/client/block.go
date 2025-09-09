@@ -31,15 +31,15 @@ func StartListenLatestBlock(ethereumClients []*EthereumClient, watchInterval tim
 				for _, ec := range ethereumClients {
 					number, err := ec.ETHClient().BlockNumber(ctx)
 					if err != nil {
-						log.Error("failed to get latest block", zap.String("rpc endpoint", ec.endpoint), zap.Error(err))
+						log.Error("failed to get latest block", zap.String("rpc endpoint", ec.Endpoint), zap.Error(err))
 						continue
 					}
 
-					log.Info("latest block fetched", zap.String("rpc endpoint", ec.endpoint), zap.Uint64("latest block", number))
+					log.Info("latest block fetched", zap.String("rpc endpoint", ec.Endpoint), zap.Uint64("latest block", number))
 
 					if number > latestBlock.Load() {
 						latestBlock.Store(number)
-						log.Info("latest block updated", zap.String("rpc endpoint", ec.endpoint), zap.Uint64("latest block", LatestBlock()))
+						log.Info("latest block updated", zap.String("rpc endpoint", ec.Endpoint), zap.Uint64("latest block", LatestBlock()))
 					}
 				}
 			case <-ctx.Done():
